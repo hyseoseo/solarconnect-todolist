@@ -61,7 +61,7 @@ interface TodoCreateProps {
 const TodoCreate = ({
   nextId,
   createTodo,
-  incrementNextId
+  incrementNextId,
 }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
@@ -76,7 +76,7 @@ const TodoCreate = ({
 
     if (!value) {
       const modal = Modal.warning({
-        content: "할 일을 입력해주세요!"
+        content: "할 일을 입력해주세요!",
       });
       setTimeout(() => modal.destroy(), 1200);
       return;
@@ -84,7 +84,7 @@ const TodoCreate = ({
 
     if (deadlineMoment.isBefore(moment(), "day")) {
       const modal = Modal.warning({
-        content: "오늘 이후의 날짜를 입력해주세요!"
+        content: "오늘 이후의 날짜를 입력해주세요!",
       });
       setTimeout(() => modal.destroy(), 1200);
       return;
@@ -94,7 +94,7 @@ const TodoCreate = ({
       id: nextId,
       text: value,
       done: false,
-      deadline: deadlineMoment.format("DD MMM YYYY")
+      deadline: deadlineMoment.format("DD MMM YYYY"),
     });
     incrementNextId(); // nextId 하나 증가
 
