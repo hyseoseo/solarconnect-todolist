@@ -8,7 +8,5 @@ export function loadData(): Itodo[] {
   }
   const loadedTodos: [] = JSON.parse(data);
   loadedTodos.map((todo) => initialTodos.push(todo));
-  console.log("initial");
-  console.log(initialTodos);
   return initialTodos;
 }

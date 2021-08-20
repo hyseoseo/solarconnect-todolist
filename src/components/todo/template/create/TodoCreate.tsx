@@ -101,7 +101,7 @@ const TodoCreate = ({
     incrementNextId(); // nextId 하나 증가
 
     setValue(""); // input 초기화
-    setDeadlineMoment(moment());
+    setDeadlineMoment(moment()); // deadline 초기화
     setOpen(false); // open 닫기
   };
 
