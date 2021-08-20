@@ -5,7 +5,7 @@ import { DatePicker, Modal } from "antd";
 import moment from "moment-es6";
 import { Itodo } from "../../TodoService";
 
-const CircleButton = styled.button<{ open: boolean }>`
+const CircleButton = styled.button`
   background: #33bb77;
   width: 50px;
   height: 50px;
@@ -63,13 +63,11 @@ const TodoCreate = ({
   createTodo,
   incrementNextId,
 }: TodoCreateProps) => {
-  const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const [deadlineMoment, setDeadlineMoment] = useState<moment.Moment | null>(
     moment()
   );
 
-  const handleToggle = () => setOpen(!open);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setValue(e.target.value);
 
@@ -102,7 +100,6 @@ const TodoCreate = ({
 
     setValue(""); // input 초기화
     setDeadlineMoment(moment()); // deadline 초기화
-    setOpen(false); // open 닫기
   };
 
   const onDateChange = (date: moment.Moment | null, dateStr: string): void => {
@@ -125,7 +122,7 @@ const TodoCreate = ({
             format="DD MMM YYYY"
             value={deadlineMoment}
           />
-          <CircleButton onClick={handleToggle} open={open}>
+          <CircleButton>
             <PlusCircleOutlined />
           </CircleButton>
         </InsertForm>
