@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { DatePicker, Modal } from "antd";
-import moment from "moment";
+import * as moment from "moment";
 import { Itodo } from "../../TodoService";
 
 const CircleButton = styled.button<{ open: boolean }>`
@@ -103,7 +103,7 @@ const TodoCreate = ({
     setOpen(false); // open 닫기
   };
 
-  const onDateChange = (date: moment, dateString: string) => {
+  const onDateChange = (date: moment.Moment, dateString: string) => {
     setDeadlineMoment(date);
   };
 
