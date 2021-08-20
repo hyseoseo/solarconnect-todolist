@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { DatePicker, Modal } from "antd";
 import moment from "moment";
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../TodoService";
 
 const CircleButton = styled.button<{ open: boolean }>`
   background: #33bb77;
@@ -94,7 +94,7 @@ const TodoCreate = ({
       id: nextId,
       text: value,
       done: false,
-      deadlineMoment: deadlineMoment,
+      deadline: deadlineMoment.format("DD MMM YYYY")
     });
     incrementNextId(); // nextId 하나 증가
 

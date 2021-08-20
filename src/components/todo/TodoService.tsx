@@ -1,26 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import moment from "moment";
 import { useState, useEffect } from "react";
+import { loadData } from "../../utils/load-data";
 
 export type Itodo = {
   id: number;
   text: string;
   done: boolean;
-  deadlineMoment: moment.Moment;
+  deadline: string;
 };
 
-let initialTodos: Itodo[] = [];
+//let initialTodos: Itodo[] = [];
 
 export const useTodo = () => {
-  const [todoState, setTodoState] = useState(initialTodos);
-  var nextIdState = 0;
+  //initialTodos = loadData();
+  const [todoState, setTodoState] = useState(loadData());
+  let nextIdState = todoState.length
+    ? todoState[todoState.length - 1].id + 1
+    : 0;
+
+  const saveData = () => {
+    localStorage.setItem("todos", JSON.stringify(todoState));
+  };
 
   const incrementNextId = () => {
+    console.log(nextIdState);
     nextIdState = nextIdState + 1;
   };
 
   const toggleTodo = (id: number) => {
-    //@TODO
     setTodoState((prevState) =>
       prevState.map((todo: Itodo) => ({
         ...todo,
@@ -33,36 +40,31 @@ export const useTodo = () => {
     setTodoState((prevState) =>
       prevState.filter((todo: Itodo) => todo.id !== id)
     );
+    console.log(todoState);
   };
 
   const createTodo = (todo: Itodo) => {
-    const nextId = todoState.length + 1;
+    //const nextId = todoState.length + 1;
     setTodoState((prevState) =>
       prevState.concat({
         ...todo,
-        id: nextId
+        id: nextIdState
       })
     );
+    console.log(todoState);
   };
-
+  /*
   const loadData = () => {
     let data = localStorage.getItem("todos");
     if (data === undefined) data = "";
     initialTodos = JSON.parse(data!);
-    if (initialTodos && initialTodos.length >= 1) {
-      incrementNextId();
-    }
     setTodoState(initialTodos);
   };
-
-  const saveData = () => {
-    localStorage.setItem("todos", JSON.stringify(todoState));
-  };
-
+  
   useEffect(() => {
     loadData();
   }, []);
-
+*/
   useEffect(() => {
     saveData();
   }, [todoState]);

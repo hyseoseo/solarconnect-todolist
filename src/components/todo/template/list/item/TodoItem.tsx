@@ -1,5 +1,5 @@
 import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../../TodoService";
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
@@ -10,6 +10,7 @@ const Remove = styled.div`
   justify-content: center;
   color: #119955;
   font-size: 16px;
+  cursor: pointer;
 `;
 
 const TodoItemBlock = styled.div`
@@ -68,8 +69,9 @@ const Deadline = styled.div<{ done: boolean; passed: boolean }>`
     `}
   ${(props) =>
     props.passed &&
+    !props.done &&
     css`
-      color: #ced4da;
+      color: #e93;
     `}
 `;
 
@@ -87,6 +89,7 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const handleRemove = () => {
     removeTodo(todo.id);
   };
+  /*
   const deadline = todo.deadlineMoment.format("DD MMM YYYY");
 
   const [passed, setPassed] = useState(false);
@@ -96,16 +99,14 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
       setPassed(true);
     }
   }, [todo]);
-
+*/
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={handleToggle}>
         {done && <CheckOutlined />}
       </CheckCircle>
       <Text done={done}>{todo.text}</Text>
-      <Deadline done={done} passed={passed}>
-        {deadline}
-      </Deadline>
+      <Deadline done={done}>{todo.deadline}</Deadline>
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>
