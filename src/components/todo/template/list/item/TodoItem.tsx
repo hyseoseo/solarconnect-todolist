@@ -56,7 +56,12 @@ const Text = styled.div<{ done: boolean }>`
     `}
 `;
 
-const Deadline = styled.div<{ done: boolean }>`
+interface DeadlineProps {
+  done: boolean;
+  passed: boolean;
+}
+
+const Deadline = styled.div<DeadlineProps>`
   flex: 1;
   font-size: 16px;
   color: #119955;
@@ -66,6 +71,12 @@ const Deadline = styled.div<{ done: boolean }>`
     css`
       color: #ced4da;
       text-decoration: line-through;
+    `}
+  ${(props) =>
+    !props.done &&
+    props.passed &&
+    css`
+      color: orange;
     `}
 `;
 
@@ -83,24 +94,25 @@ const TodoItem = ({ toggleTodo, removeTodo, todo }: TodoItemProps) => {
   const handleRemove = () => {
     removeTodo(todo.id);
   };
-  /*
-  const deadline = todo.deadlineMoment.format("DD MMM YYYY");
 
+  const deadline = moment(todo.deadline);
   const [passed, setPassed] = useState(false);
 
   useEffect(() => {
-    if (todo.deadlineMoment.isBefore(moment())) {
+    if (deadline.isBefore(moment())) {
       setPassed(true);
     }
   }, [todo]);
-*/
+
   return (
     <TodoItemBlock>
       <CheckCircle done={done} onClick={handleToggle}>
         {done && <CheckOutlined />}
       </CheckCircle>
       <Text done={done}>{todo.text}</Text>
-      <Deadline done={done}>{todo.deadline}</Deadline>
+      <Deadline done={done} passed={passed}>
+        {todo.deadline}
+      </Deadline>
       <Remove onClick={handleRemove}>
         <DeleteOutlined />
       </Remove>
