@@ -1,5 +1,5 @@
 import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Itodo } from "components/todo/TodoService";
+import { Itodo } from "../../../TodoService";
 import moment from "moment";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
@@ -68,8 +68,9 @@ const Deadline = styled.div<{ done: boolean; passed: boolean }>`
     `}
   ${(props) =>
     props.passed &&
+    !props.done &&
     css`
-      color: #ced4da;
+      color: #e93;
     `}
 `;
 
