@@ -56,7 +56,7 @@ const Text = styled.div<{ done: boolean }>`
     `}
 `;
 
-const Deadline = styled.div<{ done: boolean; passed: boolean }>`
+const Deadline = styled.div<{ done: boolean }>`
   flex: 1;
   font-size: 16px;
   color: #119955;
@@ -66,12 +66,6 @@ const Deadline = styled.div<{ done: boolean; passed: boolean }>`
     css`
       color: #ced4da;
       text-decoration: line-through;
-    `}
-  ${(props) =>
-    props.passed &&
-    !props.done &&
-    css`
-      color: #e93;
     `}
 `;
 
