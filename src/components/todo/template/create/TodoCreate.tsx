@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { PlusCircleOutlined } from "@ant-design/icons";
 import { DatePicker, Modal } from "antd";
-import * as moment from "moment";
+import moment from "moment-es6";
 import { Itodo } from "../../TodoService";
 
 const CircleButton = styled.button<{ open: boolean }>`
@@ -65,7 +65,9 @@ const TodoCreate = ({
 }: TodoCreateProps) => {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const [deadlineMoment, setDeadlineMoment] = useState(moment());
+  const [deadlineMoment, setDeadlineMoment] = useState<moment.Moment | null>(
+    moment()
+  );
 
   const handleToggle = () => setOpen(!open);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -82,7 +84,7 @@ const TodoCreate = ({
       return;
     }
 
-    if (deadlineMoment.isBefore(moment(), "day")) {
+    if (deadlineMoment?.isBefore(moment(), "day")) {
       const modal = Modal.warning({
         content: "오늘 이후의 날짜를 입력해주세요!",
       });
@@ -94,7 +96,7 @@ const TodoCreate = ({
       id: nextId,
       text: value,
       done: false,
-      deadline: deadlineMoment.format("DD MMM YYYY"),
+      deadline: deadlineMoment?.format("DD MMM YYYY"),
     });
     incrementNextId(); // nextId 하나 증가
 
@@ -103,7 +105,7 @@ const TodoCreate = ({
     setOpen(false); // open 닫기
   };
 
-  const onDateChange = (date: moment.Moment, dateString: string) => {
+  const onDateChange = (date: moment.Moment | null, dateStr: string): void => {
     setDeadlineMoment(date);
   };
 

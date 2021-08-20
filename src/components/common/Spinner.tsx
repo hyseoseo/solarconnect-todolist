@@ -12,12 +12,12 @@ interface ISpinnerProps {
   style?: React.CSSProperties;
   mask?: boolean;
 }
-
+/*
 interface IWrapperProp {
   readonly ["data-mask"]: boolean;
 }
-
-const StyledSpinnerWrapper = styled(Row)<IWrapperProp>`
+*/
+const StyledSpinnerWrapper = styled(Row)<{ ["data-mask"]: boolean }>`
   background-color: ${(styleProps) =>
     styleProps["data-mask"] ? "rgba(0, 0, 0, 0.1)" : "transparent"};
 `;

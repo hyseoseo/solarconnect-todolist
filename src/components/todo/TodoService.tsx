@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { loadData } from "../../utils/load-data";
 
@@ -6,7 +5,7 @@ export type Itodo = {
   id: number;
   text: string;
   done: boolean;
-  deadline: string;
+  deadline?: string;
 };
 
 //let initialTodos: Itodo[] = [];
@@ -31,7 +30,7 @@ export const useTodo = () => {
     setTodoState((prevState) =>
       prevState.map((todo: Itodo) => ({
         ...todo,
-        done: todo.id === id ? !todo.done : todo.done
+        done: todo.id === id ? !todo.done : todo.done,
       }))
     );
   };
@@ -48,7 +47,7 @@ export const useTodo = () => {
     setTodoState((prevState) =>
       prevState.concat({
         ...todo,
-        id: nextIdState
+        id: nextIdState,
       })
     );
     console.log(todoState);
@@ -75,6 +74,6 @@ export const useTodo = () => {
     incrementNextId,
     toggleTodo,
     removeTodo,
-    createTodo
+    createTodo,
   };
 };
