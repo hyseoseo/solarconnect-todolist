@@ -42,7 +42,14 @@ npm run build
 
 <br>
 
-## 4. 참고
+## 4. 기타 사항 
+개선될 수 있는 부분 / 로그인 관련 작성 내용 (노션 링크)
+
+https://dark-jingle-c17.notion.site/Assignment7-Todo-List-0944c0473001424a94dbbd702b3db5cf
+
+<br>
+
+## 5. 참고
 - TS 문법 : https://joshua1988.github.io/ts/intro.html
 - Ant Design: https://ant.design/components/date-picker/, https://ant.design/components/modal/
 - TS 컴파일시 moment.js 에러 관련 : https://stackoverflow.com/questions/55070643/cannot-invoke-an-expression-whose-type-lacks-a-call-signature-using-moment 
