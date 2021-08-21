@@ -1,6 +1,6 @@
+import moment from "moment-es6";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getDateString } from "../../../../utils/timer-utils";
 
 const TodoHeadBlock = styled.div`
   display: flex;
@@ -23,17 +23,17 @@ const DayText = styled.div`
 `;
 
 const TodoHead = () => {
-  const [dateInfo, setDateInfo] = useState(getDateString());
+  const [dateInfo, setDateInfo] = useState(moment());
 
   useEffect(() => {
-    const timer = setInterval(() => setDateInfo(getDateString()), 1000);
+    const timer = setInterval(() => setDateInfo(moment()), 1000);
     return () => {
       clearInterval(timer);
     };
   }, []);
 
-  const dayString = dateInfo.day;
-  const dateString = `${dateInfo.month} ${dateInfo.date}, ${dateInfo.year}`;
+  const dayString = dateInfo.format("dddd");
+  const dateString = `${dateInfo.format("MMMM DD, YYYY")}`;
 
   return (
     <TodoHeadBlock>
